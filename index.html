@@ -76,6 +76,9 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
 .poster{background:center/cover no-repeat}
 .stage canvas{opacity:0;transition:opacity .5s var(--ease-soft);transform:translateZ(0)}
 .stage.video-ready canvas{opacity:1}
+.stage.video-ready .poster{visibility:hidden;transition:visibility 0s .6s}
+.in-hero .env{visibility:hidden}.in-hero .env i{animation-play-state:paused}
+.band.live .w,.band.live .copy::before{will-change:transform,opacity}
 .scrim{position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 120% 90% at 50% 45%,rgba(20,10,4,0) 40%,rgba(20,10,4,.5) 100%),linear-gradient(to bottom,rgba(20,10,4,.45),transparent 16%)}
 .band{position:absolute;inset:0;display:flex;padding:calc(84px + 2vh) var(--gut) max(7vh,40px);pointer-events:none;opacity:var(--o,0);text-shadow:var(--tshadow);will-change:opacity}
 .band .copy{position:relative;max-width:min(780px,100%)}
@@ -533,17 +536,18 @@ const hero=$('#top'),stage=$('#stage'),canvas=$('#hero'),poster=$('#poster'),rin
 const bands=$$('.band').map(el=>({el,a:+el.dataset.a,b:+el.dataset.b,first:'first' in el.dataset,last:'last' in el.dataset,ramp:+el.dataset.ramp||0,op:-1,k:-1}));
 const REDUCED='(prefers-reduced-motion: reduce)';
 const TALL='(max-aspect-ratio: 1/1)';
-const SOURCES={wide:{n:200,dir:'assets/frames/wide/',p:'assets/poster-wide.jpg'},tall:{n:150,dir:'assets/frames/tall/',p:'assets/poster-tall.jpg'}};
+const SOURCES={wide:{n:200,w:1280,h:720,dir:'assets/frames/wide/',p:'assets/poster-wide.jpg'},tall:{n:150,w:630,h:1120,dir:'assets/frames/tall/',p:'assets/poster-tall.jpg'}};
 const pad=i=>String(i+1).padStart(3,'0');
-const sets={};            /* key -> {imgs:[], ok:[], queue, active, done, failed} */
-let scrubOn=false,mode=null,target=0,shown=0,rafId=null,lastTick=0,heroOnScreen=true,loadStart=0,loadK=0,cueGone=false,lastDrawn=-1,dirty=false;
+const sets={};
+let scrubOn=false,mode=null,target=0,shown=0,rafId=null,lastTick=0,heroOnScreen=true,loadStart=0,loadK=0,cueGone=false,lastDrawn=-1,dirty=false,heroTop=0,heroRange=1,travel=1,lastPump=0;
 const ctx=canvas.getContext('2d',{alpha:false});
-let settle=1,lastSettle=0; /* at rest, ease out of the blend so no double image remains */
+let lastGap=0,settle=1,lastSettle=0; /* at rest, ease out of the blend so no double image remains */
 
-function heroProgress(){const r=hero.getBoundingClientRect(),s=r.height-innerHeight;return s>0?clamp(-r.top/s,0,1):0}
+function measure(){heroTop=hero.offsetTop;heroRange=Math.max(1,hero.offsetHeight-innerHeight)}
+function heroProgress(){return clamp((scrollY-heroTop)/heroRange,0,1)}
 
-/* The loader never waits for a whole file. It fetches every 16th frame first, so the journey
-   works within moments, then keeps filling the gaps, nearest to the visitor's position first. */
+/* DOWNLOAD: every 16th frame first so the journey works within moments, then fill the gaps,
+   closest to the visitor first. Files are kept compressed, which costs very little memory. */
 const conn=navigator.connection||{};
 const LOW=conn.saveData||/(^|-)2g/.test(conn.effectiveType||'');
 const FINEST=LOW?4:1;
@@ -552,58 +556,99 @@ function pump(key){
   const S=sets[key];if(!S)return;
   const here=Math.round(target*(S.n-1));
   while(S.active<(key===mode?6:2)&&S.queue.length){
-    /* coarsest level first, and closest to the visitor inside that level */
+    /* the coarse set first, then evenly spaced frames ahead of the visitor, getting finer as time allows */
     let best=0,bs=Infinity;
-    for(let q=0;q<S.queue.length;q++){const i=S.queue[q],sc=-levelOf(i)*100000+Math.abs(i-here);if(sc<bs){bs=sc;best=q}}
+    for(let q=0;q<S.queue.length;q++){const i=S.queue[q],d=(i-here)*travel,sc=(i%16===0?-1e6:0)+(d>=0?d:-d*3)/levelOf(i);if(sc<bs){bs=sc;best=q}}
     const i=S.queue.splice(best,1)[0];S.active++;loadFrame(key,i,0);
   }
 }
-function loadFrame(key,i,tries){
-  const S=sets[key],im=new Image();im.decoding='async';
-  let settled=false;
-  const finish=good=>{
-    if(settled)return;settled=true;clearTimeout(dog);S.active--;
-    if(good){S.imgs[i]=im;S.got++;afterLoad(key,i)}
-    else if(tries<2){S.active++;setTimeout(()=>loadFrame(key,i,tries+1),600*(tries+1));pump(key);return}
-    else{S.bad++;if(S.bad>S.n*.5&&!S.got&&key===mode)failVideo()}
-    pump(key);
-  };
-  const dog=setTimeout(()=>finish(false),15000);
-  im.onload=()=>finish(true);im.onerror=()=>finish(false);
-  im.src=SOURCES[key].dir+pad(i)+'.webp';
+async function loadFrame(key,i,tries){
+  const S=sets[key],ctrl=new AbortController(),dog=setTimeout(()=>ctrl.abort(),15000);
+  try{
+    const res=await fetch(SOURCES[key].dir+pad(i)+'.webp',{signal:ctrl.signal});
+    if(!res.ok)throw new Error('frame '+res.status);
+    S.blobs[i]=await res.blob();S.got++;clearTimeout(dog);S.active--;
+    if(levelOf(i)>=16){
+      S.coarseLeft--;
+      if(key===mode){ring.style.setProperty('--ld',Math.round(126*S.coarseLeft/S.coarse));if(!S.coarseLeft)stage.classList.add('frames-ready')}
+    }
+    decodePump(key);
+  }catch(e){
+    clearTimeout(dog);
+    if(tries<2){setTimeout(()=>loadFrame(key,i,tries+1),600*(tries+1));return}
+    S.active--;S.bad++;
+    if(S.bad>S.n*.5&&!S.got&&key===mode)failVideo();
+  }
+  pump(key);
 }
-function afterLoad(key,i){
-  if(key!==mode)return;
-  const S=sets[key];
-  if(levelOf(i)>=16){S.coarseLeft--;ring.style.setProperty('--ld',Math.round(126*S.coarseLeft/S.coarse));if(!S.coarseLeft)stage.classList.add('frames-ready')}
-  if(!stage.classList.contains('video-ready')&&S.got>=1&&S.imgs[0]){stage.classList.add('video-ready');dirty=true;kick()}
-  /* a new frame close to where the visitor is standing: repaint with it */
-  const at=shown*(S.n-1);if(Math.abs(i-at)<levelGap(S)+1){dirty=true;kick()}
-}
-function levelGap(S){let g=16;for(const s of [8,4,2,1]){let all=true;for(let i=0;i<S.n;i+=s)if(!S.imgs[i]){all=false;break}if(all)g=s;else break}return g}
-function nearest(S,f,dir){for(let d=0;d<S.n;d++){const i=f+dir*d;if(i<0||i>=S.n)break;if(S.imgs[i])return i}return -1}
 
-/* cover-fit, with a soft blend between neighbouring frames so low frame counts stay smooth */
+/* UNPACK: pictures are unpacked off the main thread and only around the visitor, biased in the
+   direction of travel. Drawing an unpacked picture is instant, so scrolling never waits. */
+async function unpack(blob){
+  if(self.createImageBitmap)return createImageBitmap(blob);
+  const u=URL.createObjectURL(blob),im=new Image();im.src=u;await im.decode();URL.revokeObjectURL(u);return im;
+}
+function closeBmp(b){if(b&&b.close)b.close()}
+function decodePump(key){
+  const S=sets[key];if(!S||key!==mode)return;
+  const pos=shown*(S.n-1),ahead=S.budget*.72|0,behind=S.budget-ahead;
+  const here=Math.round(pos);
+  /* always the frame under the visitor first, then outward, ahead counted before behind */
+  for(let d=0;d<=ahead&&S.decoding<3;d++){
+    for(const i of d?[here+travel*d,here-travel*Math.round(d*behind/ahead)]:[here]){
+      if(i<0||i>=S.n||S.bmp[i]||S.busy[i]||!S.blobs[i])continue;
+      S.busy[i]=1;S.decoding++;
+      unpack(S.blobs[i]).then(b=>{
+        S.busy[i]=0;S.decoding--;
+        const keepCoarse=i%16===0,far=Math.abs(i-shown*(S.n-1))>S.budget;
+        if(key!==mode||(far&&!keepCoarse)){closeBmp(b)}
+        else{S.bmp[i]=b;S.live++;evict(S);const at=shown*(S.n-1);if(!stage.classList.contains('video-ready')){stage.classList.add('video-ready')}if(Math.abs(i-at)<S.budget/3){dirty=true;kick()}}
+        decodePump(key);
+      }).catch(()=>{S.busy[i]=0;S.decoding--;decodePump(key)});
+      if(S.decoding>=3)break;
+    }
+  }
+  /* with time to spare, keep a coarse set of the whole journey unpacked, for big jumps */
+  for(let i=0;i<S.n&&S.decoding<2;i+=16){
+    if(S.bmp[i]||S.busy[i]||!S.blobs[i])continue;
+    S.busy[i]=1;S.decoding++;
+    unpack(S.blobs[i]).then(b=>{S.busy[i]=0;S.decoding--;if(key!==mode)closeBmp(b);else{S.bmp[i]=b;S.live++;if(!stage.classList.contains('video-ready'))stage.classList.add('video-ready');dirty=true;kick()}decodePump(key)}).catch(()=>{S.busy[i]=0;S.decoding--});
+  }
+}
+function evict(S){
+  if(S.live<=S.budget)return;
+  const pos=shown*(S.n-1);let worst=-1,ws=-1;
+  for(let i=0;i<S.n;i++){if(!S.bmp[i]||i%16===0)continue;const d=(i-pos)*travel,sc=d<0?-d*2.5:d;if(sc>ws){ws=sc;worst=i}}
+  if(worst>=0){closeBmp(S.bmp[worst]);S.bmp[worst]=null;S.live--}
+}
+
+/* canvas never larger than the frames can fill: the graphics chip scales the rest up cheaply */
 function sizeCanvas(){
-  const r=stage.getBoundingClientRect(),dpr=Math.min(devicePixelRatio||1,mode==='tall'?2:1.5);
-  const w=Math.round(r.width*dpr),h=Math.round(r.height*dpr);
+  if(!mode)return;
+  const r=stage.getBoundingClientRect(),src=SOURCES[mode],cover=Math.max(r.width/src.w,r.height/src.h);
+  const k=Math.min(devicePixelRatio||1,1/cover,2);
+  const w=Math.round(r.width*k),h=Math.round(r.height*k);
   if(canvas.width!==w||canvas.height!==h){canvas.width=w;canvas.height=h;lastDrawn=-1;dirty=true}
 }
 function blit(im,alpha){
-  const cw=canvas.width,ch=canvas.height,iw=im.naturalWidth,ih=im.naturalHeight;if(!iw)return;
+  const cw=canvas.width,ch=canvas.height,iw=im.width,ih=im.height;if(!iw)return;
   const s=Math.max(cw/iw,ch/ih),dw=iw*s,dh=ih*s;
   ctx.globalAlpha=alpha;ctx.drawImage(im,(cw-dw)/2,(ch-dh)/2,dw,dh);
 }
+function nearest(S,f,dir){for(let d=0;d<S.n;d++){const i=f+dir*d;if(i<0||i>=S.n)break;if(S.bmp[i])return i}return -1}
 function drawFrame(p){
-  const S=sets[mode];if(!S||!S.got)return;
+  const S=sets[mode];if(!S||!S.live)return;
   const pos=p*(S.n-1);
   if(!dirty&&settle>=1&&lastSettle>=1&&Math.abs(pos-lastDrawn)<.02)return;lastSettle=settle;
   let a=nearest(S,Math.floor(pos),-1),b=nearest(S,Math.ceil(pos),1);
   if(a<0)a=b;if(b<0)b=a;if(a<0)return;
-  blit(S.imgs[a],1);
-  if(b!==a){let f=(pos-a)/(b-a);f+=(Math.round(f)-f)*settle;if(f>.01)blit(S.imgs[b],f)}
+  lastGap=b-a;
+  if(b-a>8){if(pos-a>b-pos)a=b;b=a}          /* never blend across a big gap */
+  blit(S.bmp[a],1);
+  if(b!==a){let f=(pos-a)/(b-a);f+=(Math.round(f)-f)*settle;if(f>.01)blit(S.bmp[b],f)}
   ctx.globalAlpha=1;lastDrawn=pos;dirty=false;
 }
+window.__heroGap=()=>lastGap;
 window.__heroFrac=()=>lastDrawn<0||!sets[mode]?-1:lastDrawn/(sets[mode].n-1);
 
 function updateCaptions(p){
@@ -613,7 +658,7 @@ function updateCaptions(p){
     const op=+(inO*outO).toFixed(3);
     let k=clamp((p-b.a)/(b.ramp||Math.min(.025,(b.b-b.a)*.35)),0,1);
     if(b.first)k=Math.max(k,loadK);
-    if(op!==b.op){b.el.style.setProperty('--o',op);b.el.style.visibility=op<=.001?'hidden':'visible';b.op=op}
+    if(op!==b.op){b.el.style.setProperty('--o',op);b.el.style.visibility=op<=.001?'hidden':'visible';b.el.classList.toggle('live',op>.001&&op<.999);b.op=op}
     if(Math.abs(k-b.k)>.008||(k!==b.k&&(k===0||k===1))){b.el.style.setProperty('--k',k.toFixed(3));b.k=k}
   }
   const g=p>.012;if(g!==cueGone){cue.classList.toggle('gone',g);cueGone=g}
@@ -621,38 +666,43 @@ function updateCaptions(p){
 function tick(now){
   rafId=null;
   const dt=Math.min(100,now-(lastTick||now));lastTick=now;
+  const before=shown;
   shown+=(target-shown)*(1-Math.pow(1-.2,dt/16.667));
+  if(Math.abs(shown-before)>1e-5)travel=shown>before?1:-1;
   const moving=Math.abs(target-shown)>=.0003;
   if(moving)settle=0;else{shown=target;settle=Math.min(1,settle+dt/220)}
   drawFrame(shown);updateCaptions(shown);
+  if(mode){decodePump(mode);if(now-lastPump>80){lastPump=now;pump(mode)}}
   if(moving||settle<1){if(scrubOn)rafId=requestAnimationFrame(tick)}else lastTick=0;
 }
 function kick(){if(rafId===null&&scrubOn&&heroOnScreen)rafId=requestAnimationFrame(tick)}
-function onScroll(){target=heroProgress();kick();if(mode)pump(mode)}
+function onScroll(){target=heroProgress();kick()}
 function loadRamp(now){
   if(!loadStart)loadStart=now;
   const t=clamp((now-loadStart)/1300,0,1);loadK=1-Math.pow(1-t,3);
   updateCaptions(shown);
   if(t<1)requestAnimationFrame(loadRamp);
 }
-new IntersectionObserver(es=>{heroOnScreen=es[0].isIntersecting;if(heroOnScreen)onScroll()}).observe(hero);
+new IntersectionObserver(es=>{heroOnScreen=es[0].isIntersecting;document.body.classList.toggle('in-hero',heroOnScreen);if(heroOnScreen)onScroll()}).observe(hero);
 
 function failVideo(){stage.classList.add('video-failed');stage.classList.remove('video-ready')}
 function armSource(){
   const key=matchMedia(TALL).matches?'tall':'wide';
   if(key===mode)return;
+  /* free the other orientation's unpacked pictures before starting this one */
+  if(mode&&sets[mode]){const O=sets[mode];O.bmp.forEach(closeBmp);O.bmp=new Array(O.n);O.live=0}
   mode=key;lastDrawn=-1;dirty=true;
   stage.classList.remove('video-ready','video-failed','frames-ready');
   ring.style.setProperty('--ld',126);
   poster.style.backgroundImage="url('"+SOURCES[key].p+"')";
-  sizeCanvas();
+  measure();sizeCanvas();
   if(!sets[key]){
     const n=SOURCES[key].n,queue=[];let coarse=0;
     for(let i=0;i<n;i++){if(i%FINEST===0)queue.push(i);if(i%16===0)coarse++}
-    sets[key]={n,imgs:new Array(n),queue,active:0,got:0,bad:0,coarse,coarseLeft:coarse};
-  }else if(sets[key].got){stage.classList.add('video-ready')}
-  pump(key);
-  target=shown=heroProgress();kick();
+    sets[key]={n,blobs:new Array(n),bmp:new Array(n),busy:new Array(n),queue,active:0,decoding:0,got:0,bad:0,live:0,coarse,coarseLeft:coarse,budget:key==='tall'?44:60};
+  }else if(!sets[key].coarseLeft)stage.classList.add('frames-ready');
+  target=shown=heroProgress();
+  pump(key);decodePump(key);kick();
 }
 function enableScrub(){
   if(scrubOn)return;scrubOn=true;
@@ -660,7 +710,7 @@ function enableScrub(){
   armSource();
   addEventListener('scroll',onScroll,{passive:true});
   bands.forEach(b=>{b.op=-1;b.k=-1});
-  target=shown=heroProgress();updateCaptions(shown);
+  measure();target=shown=heroProgress();updateCaptions(shown);
   requestAnimationFrame(loadRamp);
 }
 function disableScrub(){
@@ -678,7 +728,7 @@ function applyHero(){
 }
 mqR.addEventListener('change',applyHero);
 mqT.addEventListener('change',()=>{if(scrubOn){armSource();sizeCanvas()}});
-addEventListener('resize',()=>{if(scrubOn){sizeCanvas();dirty=true;onScroll()}},{passive:true});
+addEventListener('resize',()=>{if(scrubOn){measure();sizeCanvas();dirty=true;onScroll()}},{passive:true});
 /* coming back to the tab or from the back button: repaint */
 addEventListener('pageshow',()=>{if(scrubOn){dirty=true;onScroll()}});
 document.addEventListener('visibilitychange',()=>{if(!document.hidden&&scrubOn){dirty=true;onScroll()}});

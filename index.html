@@ -1,0 +1,749 @@
+<!doctype html>
+<html lang="ar" dir="rtl" class="no-js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>يسير | Yaseer. قهوة مختصة في الرياض</title>
+<meta name="description" content="يسير، قهوة مختصة في السويدي الغربي، الرياض. كأنك في بيتك. Yaseer, specialty coffee in As Suwaidi, Riyadh. Just like home.">
+<meta name="theme-color" content="#8E1512">
+<meta property="og:title" content="يسير | Yaseer. Just like home">
+<meta property="og:description" content="Specialty coffee in As Suwaidi, Riyadh. 4.7 from 688 reviews.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://salimbennani39.github.io/yaseer-coffee/">
+<meta property="og:image" content="https://salimbennani39.github.io/yaseer-coffee/assets/ending-wide.jpg">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='50' fill='%238E1512'/%3E%3Cpath fill='%23fff' d='M20 34c2 10 2 18 0 25 4 4 12 6 22 6h24c8 0 13-3 15-9 1-6 1-13-1-22-3 3-5 6-5 10 0 5-2 7-7 7H46c-7 0-11-3-12-9-2 1-4 2-6 2-3 0-6-4-8-10z'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&family=IBM+Plex+Mono:wght@400&family=IBM+Plex+Sans+Arabic:wght@400;500&family=IBM+Plex+Sans:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<style>
+:root{
+  --canvas:#EAE2D5;--panel:#F3EDE3;--walnut:#34200F;--walnut-2:#49301D;
+  --accent:#8E1512;--accent-hover:#A91C17;--accent-muted:#8E151233;
+  --text-secondary:#62503F;--text-primary:#24150E;--on-dark:#F6EFE3;--on-dark-2:#D9CBB5;--sunflower:#E0A526;
+  --tshadow:0 1px 2px rgba(14,7,3,.95),0 3px 12px rgba(14,7,3,.78),0 10px 44px rgba(14,7,3,.8);
+  --ease:cubic-bezier(.22,.8,.24,1);--ease-soft:cubic-bezier(.4,0,.2,1);
+  --gut:clamp(18px,5vw,72px);
+  --display:'Aref Ruqaa',serif;--body:'IBM Plex Sans Arabic',sans-serif;--mono:'IBM Plex Mono',monospace;
+}
+html[lang=en]{--display:'Instrument Serif',serif;--body:'IBM Plex Sans',sans-serif}
+*{box-sizing:border-box;margin:0}
+html{overflow-x:hidden;overflow-x:clip;scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{overflow-x:hidden;overflow-x:clip;background:var(--canvas);color:var(--text-primary);font:400 clamp(16px,1.15vw,18px)/1.75 var(--body);animation:pagein .9s var(--ease) both}
+@keyframes pagein{from{opacity:0}to{opacity:1}}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit}
+html[lang=ar] .en,html[lang=en] .ar{display:none!important}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+.dark :focus-visible,.stage :focus-visible,.nav :focus-visible{outline-color:var(--sunflower)}
+.skip{position:fixed;top:-60px;inset-inline-start:16px;z-index:100;background:var(--accent);color:#fff;padding:10px 16px;border-radius:8px;transition:top .25s var(--ease)}
+.skip:focus{top:12px}
+.vh{position:absolute!important;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+.mono{font-family:var(--mono);font-size:.74rem;letter-spacing:.14em;text-transform:uppercase}
+html[lang=ar] .mono{font-family:var(--body);letter-spacing:0;font-size:.86rem;text-transform:none}
+
+/* the one environment: warm room light drifting behind everything, with rug-like grain */
+.env{position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden}
+.env i{position:absolute;inset:-20%;background:radial-gradient(45% 40% at 30% 30%,#f6d9a833,transparent 70%),radial-gradient(40% 40% at 75% 70%,#8e151212,transparent 70%);animation:drift 74s ease-in-out -12s infinite alternate}
+.env::after{content:"";position:absolute;inset:0;opacity:.18;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .2 0 0 0 0 .12 0 0 0 0 .06 0 0 0 .5 0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E")}
+@keyframes drift{to{transform:translate3d(5%,4%,0) scale(1.08)}}
+body.paused *,body.paused *::before,body.paused *::after{animation-play-state:paused!important}
+
+/* nav */
+.nav{position:fixed;inset:0 0 auto 0;z-index:40;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px var(--gut);color:var(--on-dark);transition:background .5s var(--ease-soft),color .5s var(--ease-soft),box-shadow .5s var(--ease-soft)}
+.nav.solid{background:#efe7dbee;color:var(--text-primary);box-shadow:0 1px 0 #24150e1a;backdrop-filter:blur(10px)}
+.logo{display:inline-flex;flex-direction:column;align-items:center;gap:2px;text-decoration:none;color:inherit;line-height:1}
+.logo svg{width:64px;height:auto;fill:currentColor;display:block}
+.logo small{font:400 8px/1 var(--mono);letter-spacing:.42em;margin-inline-end:-.42em}
+.nav.solid .logo{color:var(--accent)}
+.nav-r{display:flex;align-items:center;gap:clamp(10px,2vw,26px)}
+.nav-r a.lk{text-decoration:none;font-size:.95rem;position:relative}
+.nav-r a.lk::after{content:"";position:absolute;inset-inline:0;bottom:-3px;height:1px;background:currentColor;transform:scaleX(0);transition:transform .35s var(--ease)}
+.nav-r a.lk:hover::after{transform:scaleX(1)}
+.lang{background:none;border:1px solid currentColor;color:inherit;border-radius:99px;padding:5px 13px;font:500 .84rem var(--body);cursor:pointer;transition:background .3s var(--ease-soft),color .3s var(--ease-soft)}
+.lang:hover{background:var(--on-dark);color:var(--walnut)}
+.nav.solid .lang:hover{background:var(--walnut);color:var(--on-dark)}
+@media (max-width:640px){.nav-r a.lk{display:none}}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;min-height:48px;padding:12px 26px;border-radius:99px;background:var(--accent);color:#fff;font:500 1rem var(--body);text-decoration:none;border:0;cursor:pointer;text-shadow:none;transition:background .3s var(--ease-soft),transform .35s var(--ease)}
+.btn:hover{background:var(--accent-hover);transform:translateY(-2px)}
+.btn.ghost{background:transparent;color:inherit;box-shadow:inset 0 0 0 1px currentColor}
+.btn.ghost:hover{background:#ffffff14}
+
+/* hero */
+.hero{position:relative;height:1000vh;background:var(--walnut)}
+.stage{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;color:var(--on-dark);background:var(--walnut)}
+.poster,.stage canvas{position:absolute;inset:0;width:100%;height:100%}
+.poster{background:center/cover no-repeat}
+.stage canvas{opacity:0;transition:opacity .5s var(--ease-soft);transform:translateZ(0)}
+.stage.video-ready canvas{opacity:1}
+.scrim{position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 120% 90% at 50% 45%,rgba(20,10,4,0) 40%,rgba(20,10,4,.5) 100%),linear-gradient(to bottom,rgba(20,10,4,.45),transparent 16%)}
+.band{position:absolute;inset:0;display:flex;padding:calc(84px + 2vh) var(--gut) max(7vh,40px);pointer-events:none;opacity:var(--o,0);text-shadow:var(--tshadow);will-change:opacity}
+.band .copy{position:relative;max-width:min(780px,100%)}
+.band .copy::before{content:"";position:absolute;inset:-46% -22%;z-index:-1;pointer-events:none;opacity:calc(.25 + .75*var(--k,1));background:radial-gradient(ellipse 64% 58% at 50% 50%,rgba(14,7,3,var(--sa,.66)) 0%,rgba(14,7,3,calc(var(--sa,.66)*.66)) 46%,rgba(14,7,3,0) 76%)}
+.b-bottom{align-items:flex-end;justify-content:center;text-align:center}
+.b-settle{align-items:flex-start;justify-content:flex-end;text-align:center}
+.b-settle .copy{margin-inline-end:clamp(0px,5vw,90px);margin-top:1vh}
+html[lang=ar] .b-settle{justify-content:flex-start}html[lang=en] .b-settle{justify-content:flex-end}
+.band h1,.band h2{font:400 clamp(2.5rem,6vw,5.4rem)/1.12 var(--display);letter-spacing:0}
+html[lang=en] .band h1,html[lang=en] .band h2{font-style:italic;letter-spacing:-.01em}
+.band p{font-size:clamp(1.02rem,1.5vw,1.25rem);margin-top:.5rem;color:var(--on-dark)}
+.band a{pointer-events:auto}
+.w{display:inline-block;--kc:clamp(0,calc((var(--k,0) - var(--th,0))*2.8),1);opacity:var(--kc)}
+.fx-approach .w{transform:scale(calc(.8 + .2*var(--kc)))}
+.fx-part .w{transform:translateX(calc((1 - var(--kc))*var(--jx,0px)))}
+.fx-drift .w{transform:translateY(calc((1 - var(--kc))*-30px))}
+.fx-rise .w{transform:translateY(calc((1 - var(--kc))*34px))}
+.fx-glow{position:relative}
+.fx-glow .soft,.fx-glow .sharp{display:block}
+.fx-glow .soft{position:absolute;inset:0;filter:blur(10px);opacity:calc(1 - var(--k,0))}
+.fx-glow .sharp{opacity:var(--k,0)}
+.stage1{--ks:clamp(0,calc((var(--k,0) - .62)*4),1);--kb:clamp(0,calc((var(--k,0) - .78)*5),1)}
+.stage1 p{opacity:var(--ks);transform:translateY(calc((1 - var(--ks))*12px))}
+.stage1 .row{opacity:var(--kb);transform:translateY(calc((1 - var(--kb))*12px));margin-top:1.1rem;display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+.ring{position:absolute;inset-block-end:18px;inset-inline-start:18px;width:30px;height:30px;color:var(--on-dark);transform:rotate(-90deg);opacity:.85;transition:opacity .5s var(--ease-soft)}
+.stage.frames-ready .ring,.stage.video-failed .ring{opacity:0}
+.cue{position:absolute;bottom:14px;inset-inline:0;margin:auto;width:max-content;font-size:.82rem;display:flex;flex-direction:column;align-items:center;gap:2px;text-shadow:var(--tshadow);transition:opacity .4s var(--ease-soft)}
+.cue::after{content:"";width:1px;height:26px;background:var(--on-dark);transform-origin:top;animation:cue 2.6s var(--ease) -1s infinite}
+@keyframes cue{0%{transform:scaleY(0)}55%{transform:scaleY(1)}100%{transform:scaleY(1);opacity:0}}
+.cue.gone{opacity:0}
+.static-copy{display:none}
+@media (max-height:560px){.cue{display:none}}
+@media (max-aspect-ratio:1/1){
+  .band{padding-bottom:max(9vh,70px)}
+  .b-settle{align-items:flex-end;justify-content:center!important}
+  .b-settle .copy{margin:0}
+  .band h1,.band h2{font-size:clamp(2.3rem,10vw,4.4rem)}
+}
+/* static mode: reduced motion or no JS */
+.static .hero,.no-js .hero{height:100vh;height:100svh}
+.static .band,.no-js .band,.static .ring,.no-js .ring,.static .cue,.no-js .cue{display:none}
+.static .poster,.no-js .poster{background-image:url(assets/ending-wide.jpg)}
+.static .static-copy,.no-js .static-copy{display:flex;position:absolute;inset:0;align-items:flex-end;justify-content:center;text-align:center;padding:90px var(--gut) 9vh;text-shadow:var(--tshadow);background:linear-gradient(to top,rgba(14,7,3,.72),transparent 62%)}
+.static-copy h1{font:400 clamp(2.4rem,6vw,5rem)/1.12 var(--display)}
+.static-copy .btn{margin-top:1rem;text-shadow:none}
+@media (max-aspect-ratio:1/1){.static .poster,.no-js .poster{background-image:url(assets/ending-tall.jpg)}}
+
+/* sections */
+section{position:relative;padding:clamp(72px,11vw,150px) var(--gut)}
+.kicker{color:var(--accent);display:block;margin-bottom:.8rem}
+.dark .kicker{color:var(--sunflower)}
+h2.t{font:400 clamp(2.1rem,5vw,4.4rem)/1.14 var(--display);max-width:18ch}
+html[lang=en] h2.t{font-style:italic;letter-spacing:-.01em}
+.lede{color:var(--text-secondary);margin-top:1rem;max-width:44ch;font-size:1.08em}
+.dark{background:var(--walnut);color:var(--on-dark)}
+.dark .lede{color:var(--on-dark-2)}
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+.in.reveal,.in .reveal{opacity:1;transform:none}
+.in .reveal:nth-child(2){transition-delay:.1s}.in .reveal:nth-child(3){transition-delay:.2s}.in .reveal:nth-child(4){transition-delay:.3s}.in .reveal:nth-child(5){transition-delay:.4s}
+.done .reveal:nth-child(n){transition-delay:0s}
+
+/* the cat: signature */
+.cat{position:absolute;width:clamp(58px,6vw,84px);height:auto;pointer-events:none;z-index:3}
+.cat .tail{transform-origin:92px 120px}
+.alive .cat .tail{animation:tail 5s ease-in-out -1.2s infinite}
+@keyframes tail{0%,100%{transform:rotate(-4deg)}50%{transform:rotate(9deg)}}
+.cat .steam{animation:none;opacity:.8}
+.alive .cat .steam{animation:steam 4.4s ease-in-out -1s infinite}
+@keyframes steam{0%,100%{opacity:.3;transform:translateY(2px)}50%{opacity:.9;transform:translateY(-3px)}}
+
+/* menu: gallery wall */
+.menu-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;margin-bottom:clamp(44px,6vw,84px)}
+.wall{display:grid;grid-template-columns:repeat(12,1fr);gap:clamp(40px,4vw,64px) clamp(20px,3vw,44px);align-items:start}
+.frame{position:relative;background:var(--panel);padding:clamp(20px,2.4vw,34px);box-shadow:0 0 0 1px #3a23181f,0 0 0 9px #4a2e1b,0 0 0 10px #2a170b,0 26px 40px -14px #24150e66;transform-origin:50% -26px;transition:transform .8s var(--ease),opacity .9s var(--ease);margin-top:26px}
+.frame::before{content:"";position:absolute;top:-30px;left:50%;width:74px;height:22px;margin-left:-37px;background:linear-gradient(to bottom right,transparent 48%,#3a2318 49%,#3a2318 52%,transparent 53%) left/50% 100% no-repeat,linear-gradient(to bottom left,transparent 48%,#3a2318 49%,#3a2318 52%,transparent 53%) right/50% 100% no-repeat}
+.frame::after{content:"";position:absolute;top:-34px;left:50%;width:9px;height:9px;margin-left:-4.5px;border-radius:50%;background:#3a2318}
+.frame:nth-child(1){grid-column:span 5;--t:-.7deg}.frame:nth-child(2){grid-column:span 4;--t:.6deg;margin-top:70px}.frame:nth-child(3){grid-column:span 3;--t:-.5deg}
+.frame:nth-child(4){grid-column:2/span 5;--t:.5deg}.frame:nth-child(5){grid-column:span 5;--t:-.5deg;margin-top:60px}
+.wall.in .frame{transform:rotate(var(--t))}
+.frame{opacity:0;transform:rotate(calc(var(--t)*5)) translateY(18px)}
+.wall.in .frame{opacity:1}
+.wall.in .frame:hover{transform:rotate(0)}
+.frame h3{font:400 clamp(1.5rem,2.3vw,2.1rem)/1.2 var(--display);color:var(--accent);margin-bottom:.8rem;padding-bottom:.6rem;border-bottom:1px solid #24150e22}
+html[lang=en] .frame h3{font-style:italic}
+.items{list-style:none;padding:0}
+.items li{display:grid;grid-template-columns:1fr auto;align-items:baseline;gap:2px 12px;padding:.42rem 0}
+.items li+li{border-top:1px dotted #24150e22}
+.items b{font:500 1rem var(--body);font-variant-numeric:tabular-nums;white-space:nowrap}
+.items b i{font:400 .72rem var(--body);font-style:normal;color:var(--text-secondary);margin-inline-start:3px}
+.items small{grid-column:1/-1;color:var(--text-secondary);font-size:.74rem;line-height:1.2}
+.frame img.art{width:100%;aspect-ratio:4/3;object-fit:cover;margin-bottom:1rem}
+.note{color:var(--text-secondary);font-size:.86rem;margin-top:.8rem}
+
+/* the house */
+.house{background:var(--panel)}
+.house-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:clamp(12px,1.6vw,22px);margin-top:clamp(36px,5vw,70px)}
+.ph{position:relative;overflow:hidden;background:#d9cdbb}
+.ph img{width:100%;height:100%;object-fit:cover;transform:scale(1.05);transition:transform 1.6s var(--ease)}
+.in .ph img,.ph.in img{transform:scale(1)}
+.ph figcaption{position:absolute;inset-block-end:0;inset-inline:0;padding:40px 16px 14px;color:var(--on-dark);font-size:.95rem;background:linear-gradient(to top,rgba(14,7,3,.72),transparent)}
+.p1{grid-column:span 7;aspect-ratio:7/8}.p2{grid-column:span 5;aspect-ratio:5/6;margin-top:clamp(30px,9vw,130px)}.p3{grid-column:span 4;aspect-ratio:4/5}.p4{grid-column:span 4;aspect-ratio:4/5;margin-top:clamp(20px,5vw,70px)}.p5{grid-column:span 4;aspect-ratio:4/5}
+
+/* friday */
+.friday{background:var(--accent);color:#fff;display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(30px,6vw,90px);align-items:center;overflow:hidden}
+.friday .kicker{color:#f6d9a8}
+.friday .lede{color:#f4dfd6}
+.friday h2.t{max-width:12ch}
+.friday .pic{aspect-ratio:3/4;max-height:76vh;overflow:hidden;box-shadow:0 0 0 9px #4a2e1b,0 26px 40px -12px #0007;transform:rotate(1.2deg)}
+.friday .pic img{width:100%;height:100%;object-fit:cover}
+.friday .hrs{display:inline-block;margin-top:1.4rem;padding:7px 16px;border:1px solid #ffffff66;border-radius:99px}
+
+/* hold the cup */
+.hold{text-align:center;display:flex;flex-direction:column;align-items:center}
+.hold h2.t{max-width:none}
+.cupbtn{all:unset;display:block;position:relative;cursor:grab;width:clamp(170px,22vw,240px);margin:clamp(26px,4vw,48px) auto 16px;touch-action:none;-webkit-user-select:none;user-select:none;-webkit-tap-highlight-color:transparent;transition:transform .5s var(--ease)}
+.cupbtn:active{cursor:grabbing;transform:scale(.97)}
+.cupbtn:focus-visible{outline:2px solid var(--sunflower);outline-offset:10px;border-radius:12px}
+.cupbtn svg{display:block;width:100%;height:auto;overflow:visible}
+.cup-fill{transform-origin:50% 100%;transform:scaleY(var(--p,0))}
+.cup-word{opacity:calc((var(--p,0) - .7)*3.4)}
+.cup-steam{opacity:calc((var(--p,0) - .9)*10)}
+.alive .cup-steam path{animation:steam 3.6s ease-in-out -1.4s infinite}
+.alive .cup-steam path:nth-child(2){animation-delay:-2.6s}
+.hint{color:var(--on-dark-2);font-size:.92rem;min-height:1.7em}
+.status{margin-top:.7rem;font:400 clamp(1.5rem,3vw,2.3rem)/1.25 var(--display);opacity:0;transform:translateY(10px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.status .dot{display:inline-block;width:.42em;height:.42em;border-radius:50%;background:var(--sunflower);vertical-align:.14em;margin-inline-end:.34em}
+.status.closed .dot{background:#b9a78f}
+.full .status{opacity:1;transform:none}
+
+/* words */
+.words{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(28px,6vw,90px);align-items:start}
+.score{font:400 clamp(5rem,13vw,11rem)/.9 var(--display);color:var(--accent)}
+html[lang=en] .score{font-style:italic}
+.q{padding:clamp(18px,2.4vw,30px) 0;border-top:1px solid #24150e22}
+.q:last-child{border-bottom:1px solid #24150e22}
+.q blockquote{font:400 italic clamp(1.4rem,2.6vw,2.1rem)/1.28 'Instrument Serif',serif;direction:ltr;text-align:left}
+.q cite{display:block;font-style:normal;color:var(--text-secondary);margin-top:.5rem;font-size:.9rem;direction:ltr;text-align:left}
+
+/* way to you */
+.way{background:var(--panel);display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,5vw,72px);align-items:center}
+.chips{display:flex;flex-wrap:wrap;gap:9px;margin-top:1.2rem}
+.chip{padding:7px 15px;border-radius:99px;background:var(--canvas);box-shadow:inset 0 0 0 1px #24150e22;font-size:.94rem}
+.way .pics{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.way .pics .ph:nth-child(1){aspect-ratio:3/4}
+.way .pics .ph:nth-child(2){aspect-ratio:3/4;margin-top:44px}
+.way .btn{margin-top:1.6rem}
+
+/* visit */
+.visit{display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,5vw,72px);align-items:stretch}
+.visit h2.t{max-width:12ch}
+.hours{list-style:none;padding:0;margin-top:1.5rem;max-width:400px}
+.hours li{display:flex;justify-content:space-between;align-items:baseline;gap:18px;padding:.55rem 0;border-top:1px solid #f6efe326}
+.hours li:last-child{border-bottom:1px solid #f6efe326}
+.hours li.today{color:var(--sunflower)}
+.hours li>span:last-child{font-variant-numeric:tabular-nums}
+.visit .row{display:flex;flex-wrap:wrap;gap:10px;margin-top:1.8rem}
+.addr{margin-top:1.1rem;color:var(--on-dark-2)}
+.map{min-height:360px;background:var(--walnut-2);overflow:hidden;box-shadow:0 0 0 9px #4a2e1b}
+.map iframe{display:block;width:100%;height:100%;min-height:360px;border:0;filter:sepia(.22) saturate(.85)}
+footer{background:#2a170b;color:var(--on-dark-2);padding:34px var(--gut) calc(34px + env(safe-area-inset-bottom));display:flex;justify-content:space-between;align-items:center;gap:18px;flex-wrap:wrap;font-size:.92rem}
+footer a{text-decoration:none}
+footer a:hover{text-decoration:underline}
+footer .logo{color:var(--on-dark)}
+
+@media (max-width:980px){
+  .frame:nth-child(n){grid-column:span 6;margin-top:26px}
+  .frame:nth-child(5){grid-column:span 12}
+  .frame:nth-child(4){grid-column:span 6}
+}
+@media (max-width:760px){
+  .wall{grid-template-columns:1fr;gap:56px}
+  .frame:nth-child(n){grid-column:auto;margin-top:26px}
+  .friday,.words,.way,.visit{grid-template-columns:1fr}
+  .friday .pic{max-height:none}
+  .house-grid{grid-template-columns:repeat(2,1fr)}
+  .p1{grid-column:span 2;aspect-ratio:4/5}.p2{grid-column:span 1;margin-top:0;aspect-ratio:3/4}.p3{grid-column:span 1;aspect-ratio:3/4}.p4{grid-column:span 1;margin-top:0;aspect-ratio:3/4}.p5{grid-column:span 1;aspect-ratio:3/4}
+  .ph figcaption{font-size:.84rem;padding:30px 11px 10px}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important;transition:none!important;transition-delay:0s!important}
+  .reveal,.frame{opacity:1!important;transform:none!important}
+  .ph img{transform:none!important}
+}
+</style>
+</head>
+<body>
+<script>document.documentElement.classList.remove('no-js')</script>
+<a class="skip" href="#main"><span class="ar">انتقل للمحتوى</span><span class="en">Skip to content</span></a>
+<div class="env" aria-hidden="true"><i></i></div>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="mark" viewBox="0 0 960 372"><g transform="translate(0,372) scale(.1,-.1)"><path d="M8822 2742 c-40 -22 -224 -239 -253 -300 -32 -64 -37 -149 -31 -474 9 -547 -9 -601 -214 -643 -155 -31 -2010 -46 -3234 -25 -333 6 -758 12 -945 14 l-340 3 -121 35 c-312 88 -470 308 -491 683 -6 124 -21 168 -63 185 -63 26 -90 8 -233 -157 -93 -109 -114 -122 -256 -159 -260 -67 -507 105 -606 421 -41 132 -68 165 -135 165 -58 0 -61 -2 -195 -151 -194 -216 -185 -182 -195 -764 -6 -376 -9 -446 -23 -484 -10 -24 -29 -107 -43 -185 -14 -78 -36 -170 -49 -206 -58 -160 -126 -312 -162 -366 -22 -33 -52 -81 -66 -109 -14 -28 -49 -70 -77 -94 -46 -39 -80 -90 -80 -121 0 -7 45 -10 137 -8 l137 3 8 31 c4 17 36 64 70 105 144 170 266 345 335 483 19 39 45 84 56 100 43 61 152 365 182 506 27 132 68 170 182 170 206 0 329 37 458 138 136 106 164 93 185 -92 26 -243 282 -520 546 -592 160 -43 4600 -50 4714 -7 458 173 911 696 962 1112 14 111 11 701 -3 738 -25 65 -86 82 -157 45z"/><path d="M2495 341 c-201 -7 -223 -16 -348 -145 -90 -93 -109 -120 -121 -168 l-6 -28 459 0 459 0 10 28 c5 15 28 50 51 77 94 113 73 212 -50 236 -47 9 -195 9 -454 0z"/><path d="M8055 336 c-138 -34 -347 -208 -362 -302 l-6 -34 465 0 466 0 5 28 c3 15 26 51 51 80 82 95 82 184 1 218 -49 20 -546 29 -620 10z"/><path d="M6110 300 c-53 -15 -156 -35 -230 -45 -245 -30 -371 -55 -444 -87 -61 -27 -86 -31 -210 -39 -320 -19 -466 -57 -466 -120 0 -5 179 -9 419 -9 l420 0 13 28 c19 39 71 60 194 77 402 56 514 93 514 169 0 62 -64 69 -210 26z"/></g></symbol>
+  <symbol id="catS" viewBox="0 0 124 140">
+    <path class="tail" d="M90 122 Q118 124 114 100 Q111 88 102 91" fill="none" stroke="#1b1109" stroke-width="8" stroke-linecap="round"/>
+    <path fill="#1b1109" d="M36 22 L41 4 L55 16 Q61 14 67 16 L81 4 L86 22 Q93 32 89 45 Q84 58 61 58 Q38 58 33 45 Q29 32 36 22Z"/>
+    <path fill="#1b1109" d="M40 54 Q22 78 24 108 Q26 128 46 130 L76 130 Q96 128 98 108 Q100 78 82 54Z"/>
+    <path fill="none" stroke="#f3ede3" stroke-width="2.4" stroke-linecap="round" d="M44 35 Q49 39 54 35M68 35 Q73 39 78 35M58 44 Q61 46 64 44"/>
+    <path fill="#f3ede3" d="M44 86 H76 V100 Q76 110 66 110 H54 Q44 110 44 100Z"/>
+    <path fill="none" stroke="#f3ede3" stroke-width="3" d="M76 90 Q86 90 85 97 Q84 103 76 103"/>
+    <path fill="#1b1109" stroke="#f3ede3" stroke-width="1.6" d="M38 96 Q46 94 50 100 Q48 106 40 106Z M84 106 Q76 108 72 104 Q74 98 82 98Z" opacity="0"/>
+    <path class="steam" fill="none" stroke="#f3ede3" stroke-width="2" stroke-linecap="round" d="M55 80 Q52 75 55 71 Q58 67 55 63M65 80 Q62 75 65 71 Q68 67 65 63"/>
+  </symbol>
+</svg>
+
+<header class="nav" id="nav">
+  <a class="logo" href="#top" aria-label="Yaseer"><svg viewBox="0 0 960 372" aria-hidden="true"><use href="#mark"/></svg><small>YASEER</small></a>
+  <div class="nav-r">
+    <a class="lk" href="#menu"><span class="ar">المنيو</span><span class="en">Menu</span></a>
+    <a class="lk" href="#house"><span class="ar">البيت</span><span class="en">The house</span></a>
+    <a class="lk" href="#way"><span class="ar">التوصيل والجمعات</span><span class="en">Delivery</span></a>
+    <a class="lk" href="#visit"><span class="ar">الموقع</span><span class="en">Find us</span></a>
+    <button class="lang" id="lang" type="button" aria-label="Switch language"><span class="ar">EN</span><span class="en">عربي</span></button>
+  </div>
+</header>
+
+<main id="main" tabindex="-1">
+<div class="hero" id="top">
+  <div class="stage" id="stage">
+    <div class="poster" id="poster" aria-hidden="true"></div>
+    <canvas id="hero" aria-hidden="true"></canvas>
+    <div class="scrim" aria-hidden="true"></div>
+
+    <div class="band b-bottom" data-a="0" data-b=".17" data-first style="--sa:.72">
+      <div class="copy">
+        <h1 class="fx-glow"><span class="ar glowt">يسير. كأنك في بيتك.</span><span class="en glowt">Yaseer. Just like home.</span></h1>
+      </div>
+    </div>
+    <div class="band b-bottom" data-a=".2" data-b=".37" style="--sa:.68">
+      <div class="copy fx-approach"><h2 class="split"><span class="ar">الأنوار شغّالة، والقهوة تنتظرك.</span><span class="en">The lights are on. The coffee is waiting.</span></h2></div>
+    </div>
+    <div class="band b-bottom" data-a=".4" data-b=".57" data-ramp=".036" style="--sa:.72">
+      <div class="copy fx-part"><h2 class="split parts"><span class="ar">ادخل، ما يحتاج تستأذن.</span><span class="en">Come in. No need to knock.</span></h2></div>
+    </div>
+    <div class="band b-bottom" data-a=".6" data-b=".79" style="--sa:.7">
+      <div class="copy fx-drift"><h2 class="split"><span class="ar">كرسيك في مكانه.</span><span class="en">Your chair is where you left it.</span></h2></div>
+    </div>
+    <div class="band b-settle" data-a=".82" data-b="1" data-last data-ramp=".05" style="--sa:.72">
+      <div class="copy fx-rise stage1">
+        <h2 class="split"><span class="ar">وصلت.</span><span class="en">You're home.</span></h2>
+        <p><span class="ar">قهوتك جاهزة.</span><span class="en">Your coffee is ready.</span></p>
+        <div class="row"><a class="btn" href="#menu"><span class="ar">شوف المنيو</span><span class="en">See the menu</span></a></div>
+      </div>
+    </div>
+
+    <div class="static-copy"><div>
+      <h1><span class="ar">يسير. كأنك في بيتك.</span><span class="en">Yaseer. Just like home.</span></h1>
+      <p><span class="ar">قهوة مختصة في السويدي، الرياض.</span><span class="en">Specialty coffee in As Suwaidi, Riyadh.</span></p>
+      <a class="btn" href="https://maps.app.goo.gl/pkofzM8Uoa12xVKGA"><span class="ar">خذني لهناك</span><span class="en">Take me there</span></a>
+    </div></div>
+
+    <svg class="ring" id="ring" viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="20" fill="none" stroke="currentColor" stroke-width="3" stroke-dasharray="126" style="stroke-dashoffset:var(--ld,126)"/></svg>
+    <div class="cue" id="cue" aria-hidden="true"><span class="ar">انزل، بيتك قريب</span><span class="en">Scroll. Home is close.</span></div>
+  </div>
+</div>
+
+<section id="menu" class="watch">
+  <div class="menu-head">
+    <div class="reveal">
+      <span class="kicker mono"><span class="ar">المنيو</span><span class="en">The menu</span></span>
+      <h2 class="t"><span class="ar">كل شي حلو في البيت له مكان على الجدار.</span><span class="en">Everything good at home gets a spot on the wall.</span></h2>
+    </div>
+    <p class="lede reveal"><span class="ar">قهوة اليوم بـ 8 ريال. كل الأسعار بالريال السعودي.</span><span class="en">Coffee of the day is 8 riyals. All prices are in Saudi riyals.</span></p>
+  </div>
+  <div class="wall" id="wall">
+    <article class="frame">
+      <h3><span class="ar">القهوة الساخنة</span><span class="en">Hot coffee</span></h3>
+      <ul class="items">
+        <li><span><span class="ar">قهوة اليوم</span><span class="en">Coffee of the day</span></span><b>8 <i><span class="ar">ر.س</span><span class="en">SR</span></i></b><small><span class="ar">0 سعرة</span><span class="en">0 cal</span></small></li>
+        <li><span><span class="ar">قهوة اليوم كبير</span><span class="en">Coffee of the day (L)</span></span><b>10 <i><span class="ar">ر.س</span><span class="en">SR</span></i></b><small><span class="ar">0 سعرة</span><span class="en">0 cal</span></small></li>
+        <li><span><span class="ar">في 60</span><span class="en">V60</span></span><b>16 <i><span class="ar">ر.س</span><span class="en">SR</span></i></b><small><span class="ar">0 سعرة</span><span class="en">0 cal</span></small></li>
+        <li><span><span class="ar">اسبريسو</span><span class="en">Espresso</span></span><b>10 <i><span class="ar">ر.س</span><span class="en">SR</span></i></b><small><span class="ar">5 سعرات</span><span class="en">5 cal</span></small></li>
+        <li><span><span class="ar">فلات وايت</span><span class="en">Flat white</span></span><b>14 <i><span class="ar">ر.س</span><span class="en">SR</span></i></b><small><span class="ar">100 سعرة</span><span class="en">100 cal</span></small></li>
+        <li><span><span class="ar">لاتيه</span><span class="en">Latte</span></span><b>15 <i><span class="ar">ر.س</span><span class="en">SR</span></i></b><small><span class="ar">150 سعرة</span><span class="en">150 cal</span></small></li>
+        <li><span><span class="ar">سبانش لاتيه</span><span class="en">Spanish latte</span></span><b>17 <i><span class="ar">ر.س</span><span class="en">SR</span></i></b><small><span class="ar">250 سعرة</span><span class="en">250 cal</span></small></li>
+        <li><span><span class="ar">كابتشينو</span><span class="en">Cappuccino</span></span><b>15 <i><span class="ar">ر.س</span><span class="en">SR</span></i></b><small><span class="ar">107 سعرات</span><span class="en">107 cal</span></small></li>
+        <li><span><span class="ar">امريكانو</span><span class="en">Americano</span></span><b>10 <i><span class="ar">ر.س</span><span class="en">SR</span></i></b><small><span class="ar">0 سعرة</span><span class="en">0 cal</span></small></li>
+      </ul>
+    </article>
+    <article class="frame">
+      <h3><span class="ar">القهوة الباردة</span><span class="en">Ice coffee</span></h3>
+      <ul class="items">
+        <li><span><span class="ar">قهوة اليوم باردة</span><span class="en">Ice coffee of the day</span></span><b>8 <i><span class="ar">ر.س</span><span class="en">SR</span></i></b><small><span class="ar">0 سعرة</span><span class="en">0 cal</span></small></li>
+        <li><span><span class="ar">قهوة اليوم كبيرة</span><span class="en">Ice coffee of the day (L)</span></span><b>10 <i><span class="ar">ر.س</span><span class="en">SR</span></i></b><small><span class="ar">0 سعرة</span><span class="en">0 cal</span></small></li>
+        <li><span><span class="ar">لاتيه بارد</span><span class="en">Ice latte</span></span><b>17 <i><span class="ar">ر.س</span><span class="en">SR</span></i></b><small><span class="ar">150 سعرة</span><span class="en">150 cal</span></small></li>
+        <li><span><span class="ar">في 60 بارد</span><span class="en">Ice V60</span></span><b>17 <i><span class="ar">ر.س</span><span class="en">SR</span></i></b><small><span class="ar">0 سعرة</span><span class="en">0 cal</span></small></li>
+        <li><span><span class="ar">سبانش لاتيه بارد</span><span class="en">Ice Spanish latte</span></span><b>18 <i><span class="ar">ر.س</span><span class="en">SR</span></i></b><small><span class="ar">250 سعرة</span><span class="en">250 cal</span></small></li>
+        <li><span><span class="ar">امريكانو بارد</span><span class="en">Ice americano</span></span><b>11 <i><span class="ar">ر.س</span><span class="en">SR</span></i></b><small><span class="ar">0 سعرة</span><span class="en">0 cal</span></small></li>
+      </ul>
+    </article>
+    <article class="frame">
+      <img class="art" src="assets/cart.jpg" alt="ركن ضيافة يسير" loading="lazy" width="480" height="640" style="aspect-ratio:1/1">
+      <h3><span class="ar">الجمعات</span><span class="en">Gatherings</span></h3>
+      <ul class="items">
+        <li><span><span class="ar">بوكس قهوة سوداء</span><span class="en">Black coffee box</span></span><b>42 <i><span class="ar">ر.س</span><span class="en">SR</span></i></b><small><span class="ar">0 سعرة</span><span class="en">0 cal</span></small></li>
+      </ul>
+    </article>
+    <article class="frame">
+      <img class="art" src="assets/matcha.jpg" alt="ماتشا مثلجة" loading="lazy" width="360" height="640" style="aspect-ratio:16/9;object-position:50% 45%"><h3><span class="ar">مشروبات مثلجة</span><span class="en">Ice drinks</span></h3>
+      <ul class="items">
+        <li><span><span class="ar">ماتشا</span><span class="en">Ice matcha</span></span><b>19 <i><span class="ar">ر.س</span><span class="en">SR</span></i></b><small><span class="ar">180 سعرة</span><span class="en">180 cal</span></small></li>
+        <li><span><span class="ar">كركديه</span><span class="en">Ice hibiscus</span></span><b>14 <i><span class="ar">ر.س</span><span class="en">SR</span></i></b><small><span class="ar">110 سعرات</span><span class="en">110 cal</span></small></li>
+        <li><span><span class="ar">مشروب الصيف</span><span class="en">Summer drink</span></span><b>17 <i><span class="ar">ر.س</span><span class="en">SR</span></i></b><small><span class="ar">150 سعرة</span><span class="en">150 cal</span></small></li>
+        <li><span><span class="ar">ماتشا فراولة</span><span class="en">Strawberry matcha</span></span><b>21 <i><span class="ar">ر.س</span><span class="en">SR</span></i></b><small><span class="ar">190 سعرة</span><span class="en">190 cal</span></small></li>
+        <li><span><span class="ar">ايس تي</span><span class="en">Ice tea</span></span><b>15 <i><span class="ar">ر.س</span><span class="en">SR</span></i></b><small><span class="ar">84 سعرة</span><span class="en">84 cal</span></small></li>
+        <li><span><span class="ar">ماء</span><span class="en">Water</span></span><b>1 <i><span class="ar">ر.س</span><span class="en">SR</span></i></b><small><span class="ar">0 سعرة</span><span class="en">0 cal</span></small></li>
+      </ul>
+    </article>
+    <article class="frame">
+      <img class="art" src="assets/waffle.jpg" alt="" loading="lazy" width="1000" height="1000">
+      <h3><span class="ar">وعلى جنب القهوة</span><span class="en">And with your coffee</span></h3>
+      <p><span class="ar">وافل، وافل البيكان، وتشيزكيك. اللي يتكرر اسمه في كل تقييم.</span><span class="en">Waffle, pecan waffle and cheesecake. The names that keep coming up in the reviews.</span></p>
+      <p class="note"><span class="ar">الحلا يتغير، اسأل عنه عند الكاونتر.</span><span class="en">Sweets change. Ask at the counter.</span></p>
+    </article>
+  </div>
+  <svg class="cat" style="inset-block-end:10px;inset-inline-end:var(--gut)" viewBox="0 0 124 140" aria-hidden="true"><use href="#catS"/></svg>
+</section>
+
+<section id="house" class="house watch">
+  <div class="reveal">
+    <span class="kicker mono"><span class="ar">البيت</span><span class="en">The house</span></span>
+    <h2 class="t"><span class="ar">البيت ما هو جدران. هو اللي يعرفون قهوتك.</span><span class="en">Home isn't walls. It's people who know your coffee.</span></h2>
+  </div>
+  <div class="house-grid">
+    <figure class="ph p1 reveal"><img src="assets/room.jpg" alt="الزيتونة في وسط جلسة يسير" loading="lazy" width="1100" height="1791"><figcaption><span class="ar">الزيتونة في نص الجلسة.</span><span class="en">The olive tree, right in the middle of the room.</span></figcaption></figure>
+    <figure class="ph p2 reveal"><img src="assets/machine.jpg" alt="ماكينة القهوة وأكواب يسير الحمراء" loading="lazy" width="1100" height="1791"><figcaption><span class="ar">ماكينتنا لابسة رسماتنا. حتى القطوة لها قهوتها.</span><span class="en">Our machine wears our drawings. Even the cat gets a coffee.</span></figcaption></figure>
+    <figure class="ph p3 reveal"><img src="assets/espresso.jpg" alt="اسبريسو على صينية خشب" loading="lazy" width="1100" height="1791"><figcaption><span class="ar">اسبريسو الصبح.</span><span class="en">The morning espresso.</span></figcaption></figure>
+    <figure class="ph p4 reveal"><img src="assets/grinders.jpg" alt="مطاحن القهوة" loading="lazy" width="1100" height="1791"><figcaption><span class="ar">كل شي يُطحن قدامك.</span><span class="en">Ground right in front of you.</span></figcaption></figure>
+    <figure class="ph p5 reveal"><img src="assets/chair.jpg" alt="كرسي ولوحة على الجدار" loading="lazy" width="1100" height="1791"><figcaption><span class="ar">وكرسيك في مكانه.</span><span class="en">And your chair, where you left it.</span></figcaption></figure>
+  </div>
+</section>
+
+<section class="friday watch">
+  <div class="reveal">
+    <span class="kicker mono"><span class="ar">كل جمعة</span><span class="en">Every Friday</span></span>
+    <h2 class="t"><span class="ar">طابت جمعتكم.</span><span class="en">Happy Friday.</span></h2>
+    <p class="lede"><span class="ar">جمعتنا غير، وأنتم سرها. كل جمعة نختار لكم محصول الجمعة.</span><span class="en">Our Fridays are different, and you are the reason. Every week we pick a Friday crop just for it.</span></p>
+    <span class="hrs"><span class="ar">نفتح الجمعة 12:30 الظهر</span><span class="en">Fridays from 12:30pm</span></span>
+  </div>
+  <div class="pic reveal"><img src="assets/pour.jpg" alt="" loading="lazy" width="360" height="640"></div>
+</section>
+
+<section class="hold dark watch" id="holdsec">
+  <div class="reveal">
+    <span class="kicker mono"><span class="ar">جرب</span><span class="en">Try it</span></span>
+    <h2 class="t"><span class="ar">امسك الكوب، وعطه ثانية.</span><span class="en">Hold the cup. Give it a second.</span></h2>
+  </div>
+  <button class="cupbtn" id="cup" type="button" aria-label="Hold to fill the cup and see if Yaseer is open now">
+    <svg viewBox="0 0 200 250" aria-hidden="true">
+      <g class="cup-steam" fill="none" stroke="#F6EFE3" stroke-width="4" stroke-linecap="round"><path d="M80 34 Q70 22 80 12 Q88 2 80 -8"/><path d="M120 34 Q110 22 120 12 Q128 2 120 -8"/></g>
+      <defs><clipPath id="cupclip"><path d="M30 48 H170 L152 236 Q151 244 142 244 H58 Q49 244 48 236Z"/></clipPath></defs>
+      <path d="M30 48 H170 L152 236 Q151 244 142 244 H58 Q49 244 48 236Z" fill="#49301D"/>
+      <g clip-path="url(#cupclip)"><rect class="cup-fill" x="20" y="40" width="160" height="210" fill="#8E1512" style="transform-box:fill-box"/></g>
+      <path d="M30 48 H170 L152 236 Q151 244 142 244 H58 Q49 244 48 236Z" fill="none" stroke="#F6EFE3" stroke-width="3"/>
+      <rect x="23" y="38" width="154" height="13" rx="6" fill="#F6EFE3"/>
+      <g class="cup-word" fill="#F6EFE3" text-anchor="middle">
+        <svg x="58" y="104" width="84" height="33" viewBox="0 0 960 372"><use href="#mark"/></svg>
+        <text x="100" y="166" font-family="IBM Plex Mono,monospace" font-size="11" letter-spacing="2.6">JUST LIKE</text>
+        <text x="100" y="182" font-family="IBM Plex Mono,monospace" font-size="11" letter-spacing="2.6">HOME</text>
+      </g>
+    </svg>
+  </button>
+  <p class="hint" id="hint"><span class="ar">اضغط واستمر</span><span class="en">Press and keep holding</span></p>
+  <p class="status" id="status" aria-live="polite"></p>
+  <svg class="cat" style="inset-block-end:0;inset-inline-start:var(--gut);filter:invert(.93) sepia(.25)" viewBox="0 0 124 140" aria-hidden="true"><use href="#catS"/></svg>
+</section>
+
+<section class="words watch">
+  <div class="reveal">
+    <span class="kicker mono"><span class="ar">اللي يقولونه</span><span class="en">What people say</span></span>
+    <div class="score">4.7</div>
+    <p class="lede"><span class="ar">من 688 تقييم على قوقل. ما طلبنا منهم يقولون شي.</span><span class="en">From 688 Google reviews. We didn't ask them to say any of it.</span></p>
+  </div>
+  <div>
+    <div class="q reveal"><blockquote>"Its true written in the cup. Yaseer, Just Like Home."</blockquote><cite>Melanie F., Google review</cite></div>
+    <div class="q reveal"><blockquote>"The cheesecake is amazing and the coffee is good too."</blockquote><cite>Raghad K., Google review</cite></div>
+    <div class="q reveal"><blockquote>"I love the Brazilian beans in my coffee of the day!"</blockquote><cite>R B, Google review</cite></div>
+  </div>
+</section>
+
+<section class="way watch" id="way">
+  <div class="reveal">
+    <span class="kicker mono"><span class="ar">التوصيل والجمعات</span><span class="en">Delivery and gatherings</span></span>
+    <h2 class="t"><span class="ar">نوصلك وين ما كنت.</span><span class="en">Always on the way to you.</span></h2>
+    <p class="lede"><span class="ar">ما قدرت تجي؟ القهوة تجيك. وعندك جمعة؟ نجيب البار كله معنا.</span><span class="en">Can't make it in? The coffee comes to you. Having people over? We bring the whole bar.</span></p>
+    <div class="chips"><span class="chip">Keeta</span><span class="chip">Jahez</span><span class="chip"><span class="ar">استلام عبر نقطة</span><span class="en">Pickup with Nugttah</span></span><span class="chip"><span class="ar">بوكس قهوة 42 ر.س</span><span class="en">Coffee box 42 SR</span></span></div>
+    <a class="btn ghost" href="https://wa.me/966551355725"><span class="ar">احجز الضيافة واتساب</span><span class="en">Book catering on WhatsApp</span></a>
+  </div>
+  <div class="pics reveal">
+    <figure class="ph"><img src="assets/cart.jpg" alt="ركن ضيافة يسير" loading="lazy" width="480" height="640"></figure>
+    <figure class="ph"><img src="assets/cheesecake.jpg" alt="تشيزكيك" loading="lazy" width="360" height="640"></figure>
+  </div>
+</section>
+
+<section class="visit dark watch" id="visit">
+  <div class="reveal">
+    <span class="kicker mono"><span class="ar">الموقع</span><span class="en">Find us</span></span>
+    <h2 class="t"><span class="ar">الباب مفتوح.</span><span class="en">The door is open.</span></h2>
+    <p class="addr"><span class="ar">الفريان، السويدي الغربي، الرياض 12994</span><span class="en">Al Faryan, As Suwaidi Al Gharabi, Riyadh 12994</span></p>
+    <ul class="hours" id="hours">
+      <li data-d="0,1,2,3"><span><span class="ar">الأحد إلى الأربعاء</span><span class="en">Sunday to Wednesday</span></span><span><span class="ar">6 صباحاً إلى 12 منتصف الليل</span><span class="en">6:00am to 12:00am</span></span></li>
+      <li data-d="4"><span><span class="ar">الخميس</span><span class="en">Thursday</span></span><span><span class="ar">6 صباحاً إلى 2 صباحاً</span><span class="en">6:00am to 2:00am</span></span></li>
+      <li data-d="5"><span><span class="ar">الجمعة</span><span class="en">Friday</span></span><span><span class="ar">12:30 ظهراً إلى 2 صباحاً</span><span class="en">12:30pm to 2:00am</span></span></li>
+      <li data-d="6"><span><span class="ar">السبت</span><span class="en">Saturday</span></span><span><span class="ar">8 صباحاً إلى 12 منتصف الليل</span><span class="en">8:00am to 12:00am</span></span></li>
+    </ul>
+    <div class="row">
+      <a class="btn" href="https://maps.app.goo.gl/pkofzM8Uoa12xVKGA"><span class="ar">خذني لهناك</span><span class="en">Take me there</span></a>
+      <a class="btn ghost" href="tel:+966551355725" dir="ltr">+966 55 135 5725</a>
+    </div>
+  </div>
+  <div class="map reveal"><iframe title="Yaseer on Google Maps" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=24.5659691,46.6373149&z=17&output=embed"></iframe></div>
+</section>
+</main>
+
+<footer>
+  <a class="logo" href="#top" aria-label="Yaseer"><svg viewBox="0 0 960 372" aria-hidden="true"><use href="#mark"/></svg><small>YASEER</small></a>
+  <span><span class="ar">قهوة مختصة. كأنك في بيتك.</span><span class="en">Specialty coffee. Just like home.</span></span>
+  <a href="https://www.instagram.com/yaseer_coffee/" dir="ltr">@yaseer_coffee</a>
+</footer>
+
+<script>
+(function(){
+'use strict';
+const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
+const root=document.documentElement;
+const clamp=(v,a,b)=>Math.min(b,Math.max(a,v));
+const smooth=(p,a,b)=>{const t=clamp((p-a)/(b-a),0,1);return t*t*(3-2*t)};
+function rng(seed){let s=seed>>>0;return()=>(s=(s*1664525+1013904223)>>>0)/4294967296}
+
+/* language, remembered per viewer */
+function setLang(l){root.lang=l;root.dir=l==='ar'?'rtl':'ltr';try{localStorage.setItem('y-lang',l)}catch(e){}renderStatus()}
+$('#lang').addEventListener('click',()=>setLang(root.lang==='ar'?'en':'ar'));
+
+/* word splitting. Words only: Arabic letters must stay joined. */
+$$('.split > span').forEach((sp,si)=>{
+  const txt=sp.textContent.trim(), words=txt.split(/\s+/), r=rng(11+si);
+  const parts=sp.parentElement.classList.contains('parts');
+  sp.setAttribute('aria-label',txt);sp.textContent='';
+  words.forEach((w,i)=>{
+    const e=document.createElement('span');e.className='w';e.setAttribute('aria-hidden','true');e.textContent=w;
+    e.style.setProperty('--th',(i/words.length*.5+r()*.04).toFixed(3));
+    if(parts){const half=i<words.length/2?1:-1;e.style.setProperty('--jx',(half*(root.dir==='rtl'?-1:1)*36)+'px')}
+    sp.append(e,' ');
+  });
+});
+$$('.glowt').forEach(sp=>{
+  const t=sp.textContent;sp.textContent='';
+  const so=document.createElement('span');so.className='soft';so.textContent=t;so.setAttribute('aria-hidden','true');
+  const sh=document.createElement('span');sh.className='sharp';sh.textContent=t;
+  sp.style.position='relative';sp.style.display='';sp.append(sh,so);
+});
+
+/* hero */
+const hero=$('#top'),stage=$('#stage'),canvas=$('#hero'),poster=$('#poster'),ring=$('#ring'),cue=$('#cue');
+const bands=$$('.band').map(el=>({el,a:+el.dataset.a,b:+el.dataset.b,first:'first' in el.dataset,last:'last' in el.dataset,ramp:+el.dataset.ramp||0,op:-1,k:-1}));
+const REDUCED='(prefers-reduced-motion: reduce)';
+const TALL='(max-aspect-ratio: 1/1)';
+const SOURCES={wide:{n:200,dir:'assets/frames/wide/',p:'assets/poster-wide.jpg'},tall:{n:150,dir:'assets/frames/tall/',p:'assets/poster-tall.jpg'}};
+const pad=i=>String(i+1).padStart(3,'0');
+const sets={};            /* key -> {imgs:[], ok:[], queue, active, done, failed} */
+let scrubOn=false,mode=null,target=0,shown=0,rafId=null,lastTick=0,heroOnScreen=true,loadStart=0,loadK=0,cueGone=false,lastDrawn=-1,dirty=false;
+const ctx=canvas.getContext('2d',{alpha:false});
+let settle=1,lastSettle=0; /* at rest, ease out of the blend so no double image remains */
+
+function heroProgress(){const r=hero.getBoundingClientRect(),s=r.height-innerHeight;return s>0?clamp(-r.top/s,0,1):0}
+
+/* The loader never waits for a whole file. It fetches every 16th frame first, so the journey
+   works within moments, then keeps filling the gaps, nearest to the visitor's position first. */
+const conn=navigator.connection||{};
+const LOW=conn.saveData||/(^|-)2g/.test(conn.effectiveType||'');
+const FINEST=LOW?4:1;
+function levelOf(i){for(const s of [16,8,4,2,1])if(i%s===0)return s;return 1}
+function pump(key){
+  const S=sets[key];if(!S)return;
+  const here=Math.round(target*(S.n-1));
+  while(S.active<(key===mode?6:2)&&S.queue.length){
+    /* coarsest level first, and closest to the visitor inside that level */
+    let best=0,bs=Infinity;
+    for(let q=0;q<S.queue.length;q++){const i=S.queue[q],sc=-levelOf(i)*100000+Math.abs(i-here);if(sc<bs){bs=sc;best=q}}
+    const i=S.queue.splice(best,1)[0];S.active++;loadFrame(key,i,0);
+  }
+}
+function loadFrame(key,i,tries){
+  const S=sets[key],im=new Image();im.decoding='async';
+  let settled=false;
+  const finish=good=>{
+    if(settled)return;settled=true;clearTimeout(dog);S.active--;
+    if(good){S.imgs[i]=im;S.got++;afterLoad(key,i)}
+    else if(tries<2){S.active++;setTimeout(()=>loadFrame(key,i,tries+1),600*(tries+1));pump(key);return}
+    else{S.bad++;if(S.bad>S.n*.5&&!S.got&&key===mode)failVideo()}
+    pump(key);
+  };
+  const dog=setTimeout(()=>finish(false),15000);
+  im.onload=()=>finish(true);im.onerror=()=>finish(false);
+  im.src=SOURCES[key].dir+pad(i)+'.webp';
+}
+function afterLoad(key,i){
+  if(key!==mode)return;
+  const S=sets[key];
+  if(levelOf(i)>=16){S.coarseLeft--;ring.style.setProperty('--ld',Math.round(126*S.coarseLeft/S.coarse));if(!S.coarseLeft)stage.classList.add('frames-ready')}
+  if(!stage.classList.contains('video-ready')&&S.got>=1&&S.imgs[0]){stage.classList.add('video-ready');dirty=true;kick()}
+  /* a new frame close to where the visitor is standing: repaint with it */
+  const at=shown*(S.n-1);if(Math.abs(i-at)<levelGap(S)+1){dirty=true;kick()}
+}
+function levelGap(S){let g=16;for(const s of [8,4,2,1]){let all=true;for(let i=0;i<S.n;i+=s)if(!S.imgs[i]){all=false;break}if(all)g=s;else break}return g}
+function nearest(S,f,dir){for(let d=0;d<S.n;d++){const i=f+dir*d;if(i<0||i>=S.n)break;if(S.imgs[i])return i}return -1}
+
+/* cover-fit, with a soft blend between neighbouring frames so low frame counts stay smooth */
+function sizeCanvas(){
+  const r=stage.getBoundingClientRect(),dpr=Math.min(devicePixelRatio||1,mode==='tall'?2:1.5);
+  const w=Math.round(r.width*dpr),h=Math.round(r.height*dpr);
+  if(canvas.width!==w||canvas.height!==h){canvas.width=w;canvas.height=h;lastDrawn=-1;dirty=true}
+}
+function blit(im,alpha){
+  const cw=canvas.width,ch=canvas.height,iw=im.naturalWidth,ih=im.naturalHeight;if(!iw)return;
+  const s=Math.max(cw/iw,ch/ih),dw=iw*s,dh=ih*s;
+  ctx.globalAlpha=alpha;ctx.drawImage(im,(cw-dw)/2,(ch-dh)/2,dw,dh);
+}
+function drawFrame(p){
+  const S=sets[mode];if(!S||!S.got)return;
+  const pos=p*(S.n-1);
+  if(!dirty&&settle>=1&&lastSettle>=1&&Math.abs(pos-lastDrawn)<.02)return;lastSettle=settle;
+  let a=nearest(S,Math.floor(pos),-1),b=nearest(S,Math.ceil(pos),1);
+  if(a<0)a=b;if(b<0)b=a;if(a<0)return;
+  blit(S.imgs[a],1);
+  if(b!==a){let f=(pos-a)/(b-a);f+=(Math.round(f)-f)*settle;if(f>.01)blit(S.imgs[b],f)}
+  ctx.globalAlpha=1;lastDrawn=pos;dirty=false;
+}
+window.__heroFrac=()=>lastDrawn<0||!sets[mode]?-1:lastDrawn/(sets[mode].n-1);
+
+function updateCaptions(p){
+  for(const b of bands){
+    const f=Math.min(.02,(b.b-b.a)/3);
+    const inO=b.first?1:smooth(p,b.a,b.a+f), outO=b.last?1:1-smooth(p,b.b-f,b.b);
+    const op=+(inO*outO).toFixed(3);
+    let k=clamp((p-b.a)/(b.ramp||Math.min(.025,(b.b-b.a)*.35)),0,1);
+    if(b.first)k=Math.max(k,loadK);
+    if(op!==b.op){b.el.style.setProperty('--o',op);b.el.style.visibility=op<=.001?'hidden':'visible';b.op=op}
+    if(Math.abs(k-b.k)>.008||(k!==b.k&&(k===0||k===1))){b.el.style.setProperty('--k',k.toFixed(3));b.k=k}
+  }
+  const g=p>.012;if(g!==cueGone){cue.classList.toggle('gone',g);cueGone=g}
+}
+function tick(now){
+  rafId=null;
+  const dt=Math.min(100,now-(lastTick||now));lastTick=now;
+  shown+=(target-shown)*(1-Math.pow(1-.2,dt/16.667));
+  const moving=Math.abs(target-shown)>=.0003;
+  if(moving)settle=0;else{shown=target;settle=Math.min(1,settle+dt/220)}
+  drawFrame(shown);updateCaptions(shown);
+  if(moving||settle<1){if(scrubOn)rafId=requestAnimationFrame(tick)}else lastTick=0;
+}
+function kick(){if(rafId===null&&scrubOn&&heroOnScreen)rafId=requestAnimationFrame(tick)}
+function onScroll(){target=heroProgress();kick();if(mode)pump(mode)}
+function loadRamp(now){
+  if(!loadStart)loadStart=now;
+  const t=clamp((now-loadStart)/1300,0,1);loadK=1-Math.pow(1-t,3);
+  updateCaptions(shown);
+  if(t<1)requestAnimationFrame(loadRamp);
+}
+new IntersectionObserver(es=>{heroOnScreen=es[0].isIntersecting;if(heroOnScreen)onScroll()}).observe(hero);
+
+function failVideo(){stage.classList.add('video-failed');stage.classList.remove('video-ready')}
+function armSource(){
+  const key=matchMedia(TALL).matches?'tall':'wide';
+  if(key===mode)return;
+  mode=key;lastDrawn=-1;dirty=true;
+  stage.classList.remove('video-ready','video-failed','frames-ready');
+  ring.style.setProperty('--ld',126);
+  poster.style.backgroundImage="url('"+SOURCES[key].p+"')";
+  sizeCanvas();
+  if(!sets[key]){
+    const n=SOURCES[key].n,queue=[];let coarse=0;
+    for(let i=0;i<n;i++){if(i%FINEST===0)queue.push(i);if(i%16===0)coarse++}
+    sets[key]={n,imgs:new Array(n),queue,active:0,got:0,bad:0,coarse,coarseLeft:coarse};
+  }else if(sets[key].got){stage.classList.add('video-ready')}
+  pump(key);
+  target=shown=heroProgress();kick();
+}
+function enableScrub(){
+  if(scrubOn)return;scrubOn=true;
+  root.classList.remove('static');
+  armSource();
+  addEventListener('scroll',onScroll,{passive:true});
+  bands.forEach(b=>{b.op=-1;b.k=-1});
+  target=shown=heroProgress();updateCaptions(shown);
+  requestAnimationFrame(loadRamp);
+}
+function disableScrub(){
+  if(!scrubOn&&root.classList.contains('static'))return;
+  scrubOn=false;root.classList.add('static');
+  removeEventListener('scroll',onScroll);
+  if(rafId!==null){cancelAnimationFrame(rafId);rafId=null}
+  poster.style.backgroundImage='';
+  stage.classList.remove('video-ready','frames-ready');mode=null;
+}
+const mqR=matchMedia(REDUCED),mqT=matchMedia(TALL);
+function applyHero(){
+  if(mqR.matches){disableScrub();pinFinal()}
+  else{unpin();enableScrub()}
+}
+mqR.addEventListener('change',applyHero);
+mqT.addEventListener('change',()=>{if(scrubOn){armSource();sizeCanvas()}});
+addEventListener('resize',()=>{if(scrubOn){sizeCanvas();dirty=true;onScroll()}},{passive:true});
+/* coming back to the tab or from the back button: repaint */
+addEventListener('pageshow',()=>{if(scrubOn){dirty=true;onScroll()}});
+document.addEventListener('visibilitychange',()=>{if(!document.hidden&&scrubOn){dirty=true;onScroll()}});
+
+/* entrances and living elements only while visible */
+const io=new IntersectionObserver(es=>es.forEach(e=>{
+  if(e.isIntersecting){e.target.classList.add('in','alive');if(!e.target.dataset.d){e.target.dataset.d=1;setTimeout(()=>e.target.classList.add('done'),1600)}}
+  else e.target.classList.remove('alive');
+}),{threshold:.08,rootMargin:'0px 0px -6% 0px'});
+$$('.watch,.wall').forEach(x=>io.observe(x));
+new IntersectionObserver(es=>{$('#nav').classList.toggle('solid',!es[0].isIntersecting)},{rootMargin:'-70px 0px 0px 0px'}).observe(hero);
+document.addEventListener('visibilitychange',()=>document.body.classList.toggle('paused',document.hidden));
+
+/* real opening hours, always in Riyadh time. Past midnight belongs to the day before. */
+const OPEN={0:[6,24],1:[6,24],2:[6,24],3:[6,24],4:[6,26],5:[12.5,26],6:[8,24]};
+function riyadh(){
+  const p=new Intl.DateTimeFormat('en-US',{timeZone:'Asia/Riyadh',weekday:'short',hour:'numeric',minute:'numeric',hourCycle:'h23'}).formatToParts(new Date());
+  const g=t=>p.find(x=>x.type===t).value;
+  return{d:['Sun','Mon','Tue','Wed','Thu','Fri','Sat'].indexOf(g('weekday')),h:+g('hour')+(+g('minute'))/60};
+}
+function fmt(x,ar){const v=x%24,h=Math.floor(v),m=Math.round((v-h)*60),h12=h%12||12,mm=m?':'+String(m).padStart(2,'0'):'';
+  if(ar){const part=h<4?'صباحاً':h<12?'الصبح':h<15?'الظهر':h<18?'العصر':'مساءً';return h12+mm+' '+part}
+  return h12+mm+(h<12?'am':'pm')}
+function renderStatus(){
+  const {d,h}=riyadh(),ar=root.lang==='ar',el=$('#status');
+  const prev=(d+6)%7;let open=false,close=0;
+  if(h+24<OPEN[prev][1]){open=true;close=OPEN[prev][1]}
+  else if(h>=OPEN[d][0]&&h<OPEN[d][1]){open=true;close=OPEN[d][1]}
+  let txt;
+  if(open)txt=ar?'مفتوحين الحين، لين '+fmt(close,true):'Open right now, until '+fmt(close,false);
+  else{const nx=h<OPEN[d][0]?d:(d+1)%7;txt=ar?'نفتح الساعة '+fmt(OPEN[nx][0],true):'We open at '+fmt(OPEN[nx][0],false)}
+  el.textContent='';const dot=document.createElement('span');dot.className='dot';el.append(dot,txt);el.classList.toggle('closed',!open);
+  const liveDay=h+24<OPEN[prev][1]?prev:d;
+  $$('#hours li').forEach(li=>li.classList.toggle('today',li.dataset.d.split(',').includes(String(liveDay))));
+}
+
+/* hold the cup: progress builds while held, eases back on release */
+const cup=$('#cup'),sec=$('#holdsec'),hint=$('#hint');
+let p=0,holding=false,cupRaf=null,cupLast=0,full=false;
+function drawCup(){cup.style.setProperty('--p',p.toFixed(3))}
+function cupTick(now){
+  const dt=Math.min(64,now-(cupLast||now));cupLast=now;
+  if(holding)p=Math.min(1,p+dt/1500);else if(!full)p=Math.max(0,p-dt/1100);
+  drawCup();
+  if(p>=1&&!full){full=true;sec.classList.add('full');renderStatus();hint.style.visibility='hidden';cup.setAttribute('aria-pressed','true')}
+  if((holding&&p<1)||(!holding&&!full&&p>0))cupRaf=requestAnimationFrame(cupTick);else{cupRaf=null;cupLast=0}
+}
+function press(e){if(e)e.preventDefault();holding=true;if(cupRaf===null)cupRaf=requestAnimationFrame(cupTick)}
+function release(){holding=false;if(cupRaf===null&&!full&&p>0)cupRaf=requestAnimationFrame(cupTick)}
+cup.addEventListener('pointerdown',e=>{try{cup.setPointerCapture(e.pointerId)}catch(_){ }press(e)});
+cup.addEventListener('pointerup',release);cup.addEventListener('pointercancel',release);cup.addEventListener('lostpointercapture',release);
+cup.addEventListener('keydown',e=>{if((e.key===' '||e.key==='Enter')&&!e.repeat)press(e)});
+cup.addEventListener('keyup',e=>{if(e.key===' '||e.key==='Enter')release()});
+cup.addEventListener('contextmenu',e=>e.preventDefault());
+
+let pinned=false;
+function pinFinal(){pinned=true;p=1;full=true;drawCup();sec.classList.add('full');hint.style.visibility='hidden';renderStatus()}
+function unpin(){if(!pinned)return;pinned=false;p=0;full=false;drawCup();sec.classList.remove('full');hint.style.visibility='';cup.removeAttribute('aria-pressed')}
+
+/* start */
+let saved=null;try{saved=localStorage.getItem('y-lang')}catch(e){}
+setLang(saved==='en'?'en':'ar');
+applyHero();
+setInterval(renderStatus,60000);
+})();
+</script>
+</body>
+</html>
